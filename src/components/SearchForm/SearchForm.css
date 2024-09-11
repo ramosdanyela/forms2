@@ -1,0 +1,58 @@
+/* Estilo da caixa que envolve o campo de busca e select */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 120px;
+}
+
+/* Container dos campos de texto e select */
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Estilo do campo de busca */
+.search-input {
+  width: 65%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Estilo do select */
+.year-select {
+  width: 30%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Estilo do botão de submit */
+.submit-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}

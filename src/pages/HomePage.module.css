@@ -1,0 +1,26 @@
+/* Estilo para a página HomePage */
+.homepageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0; /* Cor de fundo suave */
+}
+
+.homepageTitle {
+  font-size: 2.5rem;
+  color: #333; /* Cor escura para contraste */
+  margin-bottom: 20px; /* Espaçamento entre o título e o conteúdo */
+  text-align: center; /* Centraliza o título */
+}
+
+.searchFormContainer {
+  display: flex;
+  width: 100%;
+  background-color: white;
+}
+
+.homepageCards {
+  display: flex;
+  width: 100%;
+}
