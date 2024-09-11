@@ -2,11 +2,6 @@
   background-color: white;
   text-align: center;
   display: flex;
-  width: 100%;
+  max-width: 2000px;
   margin: 0 auto;
-}
-
-.mainSite {
-  display: flex;
-  width: 100%;
 }

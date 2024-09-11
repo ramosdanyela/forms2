@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm({
-  searchText,
-  setSearchText,
-  selectedYear,
-  setSelectedYear,
-  cars,
-}) {
+function SearchForm({ search, setSearch, year, setYear, cars }) {
   const handleSearchChange = (event) => {
-    setSearchText(event.target.value);
+    setSearch(event.target.value);
   };
 
   const handleYearChange = (event) => {
-    setSelectedYear(event.target.value);
+    setYear(event.target.value);
   };
 
   const uniqueYears = Array.from(
@@ -26,12 +20,12 @@ function SearchForm({
         <input
           type="text"
           placeholder="Search..."
-          value={searchText}
+          value={search}
           onChange={handleSearchChange}
           className="search-input"
         />
         <select
-          value={selectedYear}
+          value={year}
           onChange={handleYearChange}
           className="year-select"
         >

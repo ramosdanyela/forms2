@@ -166,7 +166,9 @@
   flex-direction: row;
 }
 
-.containerYear, .containerClass, .containerId {
-display: flex;
-flex-direction: row;
+.containerYear,
+.containerClass,
+.containerId {
+  display: flex;
+  flex-direction: row;
 }

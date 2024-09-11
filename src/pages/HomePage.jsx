@@ -1,29 +1,25 @@
-import Cards from "../components/Cards/Cards";
-import SearchForm from "../components/SearchForm/SearchForm";
 import styles from "./HomePage.module.css";
 import { useState } from "react";
+import Cards from "../components/Cards/Cards";
+import SearchForm from "../components/SearchForm/SearchForm";
 
 function HomePage({ cars, setCars }) {
-  const [searchText, setSearchText] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
+  const [search, setSearch] = useState("");
+  const [year, setYear] = useState(null);
 
   return (
-    <div>
+    <div className="homePageContainer">
       <div className={styles.searchFormContainer}>
         <SearchForm
-          searchText={searchText}
-          setSearchText={setSearchText}
-          selectedYear={selectedYear}
-          setSelectedYear={setSelectedYear}
+          search={search}
+          setSearch={setSearch}
+          year={year}
+          setYear={setYear}
           cars={cars}
         />
       </div>
       <div className={styles.homepageCards}>
-        <Cards
-          cars={cars}
-          searchText={searchText}
-          selectedYear={selectedYear}
-        />{" "}
+        <Cards cars={cars} search={search} year={year} />{" "}
       </div>
     </div>
   );

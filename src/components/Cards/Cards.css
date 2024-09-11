@@ -1,6 +1,6 @@
 .cardsContainerMaster {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-around; /* Para centralizar os cards */
   gap: 20px; /* Espaçamento entre os cards */
   padding: 20px;

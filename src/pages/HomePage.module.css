@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   background-color: #f0f0f0; /* Cor de fundo suave */
 }
 
@@ -22,5 +23,6 @@
 
 .homepageCards {
   display: flex;
+  display: row !important;
   width: 100%;
 }
