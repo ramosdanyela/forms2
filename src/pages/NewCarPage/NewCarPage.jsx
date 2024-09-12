@@ -1,41 +1,42 @@
 import styles from "./NewCarPage.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function NewCarPage({ cars, setCars }) {
+function NewCarPage({}) {
   const [form, setForm] = useState({
     image: "",
     title: "",
     start_production: "",
     class: "",
-    id: "",
   });
 
   function handleAddChange(event) {
     setForm({ ...form, [event.target.name]: event.target.value });
   }
 
-  function handleAddClick(event) {
+  async function handleAddClick(event) {
     event.preventDefault();
 
-    // Cria um novo carro com um ID único (por exemplo, baseado no tamanho da array + 1)
     const newCar = {
       ...form,
-      id: cars.length > 0 ? cars[cars.length - 1].id + 1 : 1, // Garante que o ID seja único
     };
 
-    // Adiciona o novo carro ao array existente de cars
-    setCars([...cars, newCar]);
+    try {
+      const response = await axios.post(
+        `https://basic-server-express-production.up.railway.app/cars/create`,
+        newCar
+      );
+      console.log("Car created:", response.data);
 
-    // Limpa o formulário após o envio
-    setForm({
-      image: "",
-      title: "",
-      start_production: "",
-      class: "",
-      id: "",
-    });
-
-    console.log(newCar);
+      setForm({
+        image: "",
+        title: "",
+        start_production: "",
+        class: "",
+      });
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
   }
 
   return (
@@ -81,7 +82,7 @@ function NewCarPage({ cars, setCars }) {
           <label>Year</label>
           <input
             className={styles.inputYear}
-            type="text"
+            type="number"
             placeholder="Year"
             name="start_production"
             value={form.start_production}

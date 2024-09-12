@@ -1,34 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
+import axios from "axios";
 import { Routes, Route, Link } from "react-router-dom";
-import HomePage from "./pages/HomePage.jsx";
-import DetailPage from "./pages/DetailPage.jsx";
-import NewCarPage from "./pages/NewCarPage.jsx";
-import carsData from "./data/carswithid.json";
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import DetailPage from "./pages/DetailPage/DetailPage.jsx";
+import NewCarPage from "./pages/NewCarPage/NewCarPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
-import RandomPage from "/Users/danyelaramos/Documents/development/react/forms2/src/pages/RandomPage.jsx"
+import RandomPage from "./pages/RandomPage/RandomPage.jsx";
 
 function App() {
-  const [cars, setCars] = useState(carsData);
+  const [cars, setCars] = useState([]);
 
   return (
-    <div className="mainSite">
-      <Navbar cars={cars}/>
-
+    <div className="mainScreen">
+      <Navbar />
       <Routes>
-      <Route path="/random/car/:id_car" element={<RandomPage cars={cars} setCars={setCars}
-        />}/>
+        <Route path="/random/car/:id" element={<RandomPage />} />
         <Route path="/" element={<HomePage cars={cars} setCars={setCars} />} />
         <Route
-          path="/car/:id_car"
+          path="/car/:id"
           //o ":"identifica que é um parametro
-          element={<DetailPage cars={cars} setCars={setCars} />}
+          element={<DetailPage />}
         />
-        <Route
-          path="/addcar"
-          element={<NewCarPage cars={cars} setCars={setCars} />} />
-
-         
+        <Route path="/addcar" element={<NewCarPage />} />
       </Routes>
     </div>
   );

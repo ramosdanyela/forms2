@@ -1,0 +1,78 @@
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  display: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #3d423c;
+  padding-top: 180px;
+  margin-top: 80px;
+}
+
+.cardContainerUnit {
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Aumenta o padding para dar mais espaço interno */
+  margin: 10px;
+  width: 250px; /* Ligeiramente maior */
+  height: 270px; /* Ligeiramente maior */
+  background-color: #b2b39f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave para hover */
+}
+
+.cardContainerUnit:hover {
+  background-color: #b2b39f;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada no hover */
+}
+
+.HPImage {
+  display: flex;
+  border-radius: 10px;
+  width: 90%;
+  height: 150px;
+  margin-bottom: 5px;
+}
+
+.HPTitle {
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+  color: 3d423c;
+  text-align: center; /* Centraliza o texto */
+  margin: 0;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.customlink {
+  color: #333; /* Cor padrão do link */
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.customlink:hover {
+  color: #f8f8f8 !important; /* Muda a cor do link no hover */
+  text-decoration: underline;
+}
+
+.seeDetails {
+  display: flex;
+  margin-top: 20px;
+  background-color: #dedfc5;
+  color: #3d423c;
+  padding: 10px 20px; /* Espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  font-weight: bold; /* Deixa o texto em negrito */
+  border: none; /* Remove a borda */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves para cor e animação */
+}

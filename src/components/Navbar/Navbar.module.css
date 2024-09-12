@@ -1,33 +1,16 @@
-/* Estilo para o App container */
-.appContainer {
-  font-family: Arial, sans-serif; /* Fonte limpa e moderna */
-  background-color: #ffffff; /* Fundo branco */
-  min-height: 100vh; /* Ocupa toda a altura da tela */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Estilo para a barra de navegação */
-nav {
-  background-color: #333; /* Cor escura para destaque */
+.navContainer {
+  background-color: #3d423c; /* Cor escura para destaque */
   width: 100%;
   padding: 10px 0;
   display: flex;
   justify-content: space-between; /* Distribui os itens entre as extremidades */
   align-items: center;
   color: white; /* Texto branco para contraste */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra leve */
   position: fixed; /* Fixa a navbar no topo */
   top: 0;
   left: 0;
   z-index: 1000; /* Garante que fique acima de outros conteúdos */
   height: 60px;
-}
-
-/* Estilo para o link "Home" à esquerda */
-nav .nav-left {
-  margin-left: 10px;
 }
 
 nav img {
@@ -75,33 +58,24 @@ main {
 }
 
 .sitetitle {
-  color: black;
+  color: white;
 }
 
 /* Estilo para links gerais */
 .headlineContainer {
-  background-color: white;
-  color: black; /* Cor padrão do link */
+  color: white; /* Cor padrão do link */
   text-decoration: none;
   font-weight: bold;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   transition: color 0.3s ease;
   width: 100%;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
-.navContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.navContainer:hover {
-  color: #ffcc00 !important; /* Muda a cor no hover */
-}
-
-.randomContainer{
+.randomContainer {
   background: none;
   border: none;
   color: inherit;
@@ -110,17 +84,17 @@ main {
   text-decoration: none;
 }
 
-.randomContainer:hover{
+.randomContainer:hover {
   text-decoration: underline;
   color: blue; /* Cor típica de um link */
 }
 
-.newAndRandomContainer{
+.newAndRandomContainer {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
 }
 
-.customlink{
+.customlink {
   text-decoration: none;
   color: inherit;
   cursor: default; /* Não parece um link inicialmente */

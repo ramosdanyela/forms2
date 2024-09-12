@@ -1,9 +1,8 @@
-import { useState } from "react";
 import styles from "./Navbar.module.css";
-import carIcon from "/Users/danyelaramos/Documents/development/react/forms2/src/assets/carIcon.png";
+import icon from "../../../public/icon.svg";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
-function Navbar({ cars }) {
+function Navbar() {
   return (
     <nav className={styles.navContainer}>
       <div className={styles.headlineContainer}>
@@ -14,7 +13,7 @@ function Navbar({ cars }) {
         </div>
         <div className={styles.carimage}>
           {" "}
-          <img className={styles.icon} src={carIcon} />
+          <img className={styles.icon} src={icon} />
           <h1 className={styles.sitetitle}>Car list</h1>{" "}
         </div>{" "}
         <div className={styles.newAndRandomContainer}>
@@ -23,7 +22,7 @@ function Navbar({ cars }) {
           </Link>
           <div className={styles.randomContainer}>
             {" "}
-            <Link to="/random/car/:id_car" className={styles.customlink}>
+            <Link to="/random/car/:id" className={styles.customlink}>
               Get Random Car
             </Link>{" "}
           </div>

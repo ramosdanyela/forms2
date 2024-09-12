@@ -1,38 +1,54 @@
-import "./Cards.css";
-import { useState } from "react";
+import styles from "./Cards.module.css";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-function Cards({ cars, search, year }) {
-  
+function Cards({ search, year }) {
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          "https://basic-server-express-production.up.railway.app/cars/all"
+        );
+        setCars(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data", error);
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
-    <div>
-    {cars.filter((car) =>
-        car.title.toLowerCase().includes(search.toLowerCase())
-      )
-      .filter((car) =>
-        year ? car.start_production === parseInt(year) : true
-      )
-      .length > 0 ? (
-      cars
-        .filter((car) =>
-          car.title.toLowerCase().includes(search.toLowerCase())
-        )
-        .filter((car) =>
-          year ? car.start_production === parseInt(year) : true
-        )
-        .map((car) => (
-          <Link to={`/car/${car.id}`} className="custom-link" key={car.id}>
-            <div className="cardContainerUnit">
-              <img className="HPImage" src={car.image} alt={car.title} />
-              <p className="HPTitle">{car.title}</p>
-            </div>
-          </Link>
-        ))
-      ) : (
-        <p>No cars found</p>
+    <>
+      {loading && <p>Loading..</p>}
+      {!loading && cars.length === 0 && <p>No cars found</p>}
+      {!loading && cars.length > 0 && (
+        <div className={styles.cardsContainer}>
+          {cars
+            .filter((car) =>
+              car.title.toLowerCase().includes(search.toLowerCase())
+            )
+            .filter((car) =>
+              year ? car.start_production === parseInt(year) : true
+            )
+            .map((car) => (
+              <Link to={`/car/${car._id}`} className={styles.customlink} key={car._id}>
+                <div className={styles.cardContainerUnit}>
+                  <img className={styles.HPImage} src={car.image} alt={car.title} />
+                  <p className={styles.HPTitle}>{car.title}</p>
+                  <button className={styles.seeDetails}>Ver mais</button>
+                </div>
+              </Link>
+            ))}
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

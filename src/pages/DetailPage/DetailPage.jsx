@@ -1,26 +1,40 @@
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./DetailPage.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function DetailPage({ cars, setCars }) {
-  const { id_car } = useParams();
+function DetailPage() {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [isEditVisible, setIsEditVisible] = useState(false);
 
+  const [isEditVisible, setIsEditVisible] = useState(false);
   const toggleEditButton = () => {
     setIsEditVisible(!isEditVisible);
   };
 
-  const selectedCar = cars.find((car, index) => {
-    return car.id === Number(id_car);
-  });
+  const [car, setCar] = useState({});
+  const [form, setForm] = useState({});
 
-  const [form, setForm] = useState({
-    title: selectedCar.title,
-    start_production: selectedCar.start_production,
-    class: selectedCar.class,
-    id: selectedCar.id,
-  });
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          `https://basic-server-express-production.up.railway.app/cars/${id}`
+        );
+        let car = response.data;
+        setCar(car);
+        setForm({
+          title: car.title,
+          start_production: car.start_production,
+          class: car.class,
+          _id: car._id,
+        });
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    }
+    fetchData();
+  }, []);
 
   function handleChange(event) {
     {
@@ -28,50 +42,57 @@ function DetailPage({ cars, setCars }) {
     }
   }
 
-  function handleSaveClick(event) {
-    event.preventDefault();
-    const updatedCars = cars.map((car) =>
-      car.id === Number(id_car)
-        ? { ...car, ...form } // Substitui o carro com os novos dados do formulário
-        : car
-    );
+  console.log(car);
 
-    // Atualiza o estado global de carros
-    setCars(updatedCars);
+  async function handleSaveClick(event) {
+    event.preventDefault();
+    try {
+      const response = await axios.put(
+        `https://basic-server-express-production.up.railway.app/cars/update/${id}`,
+        { ...form }
+      );
+      setIsEditVisible(false);
+      setCar(response.data);
+    } catch (error) {
+      console.error("Error updating car", error);
+    }
   }
 
-  function handleDeleteClick(event) {
+  async function handleDeleteClick(event) {
     event.preventDefault();
-    const updatedCars = cars.filter((car) => car.id !== Number(id_car));
-    setCars(updatedCars);
-    navigate("/");
+    try {
+      const response = await axios.delete(
+        `https://basic-server-express-production.up.railway.app/cars/delete/${id}`
+      );
+      navigate("/");
+    } catch (error) {
+      console.error("Error deleting car", error);
+    }
   }
-
-  console.log(cars);
 
   return (
     <div className={styles.dpContainer}>
       <div className={styles.dpTitleContainer}>
-        <div className={styles.dpTitle}> {selectedCar.title} </div>
+        <div className={styles.dpTitle}> {car.title} </div>
       </div>
       <div className={styles.dpContainerUnit}>
         <div className={styles.dpImageContainer}>
-          <img src={selectedCar.image} />
+          <img src={car.image} />
         </div>
         <div className={styles.dpDescription}>
           {" "}
           <div className={styles.containerYear}>
             {" "}
             <b>Year:</b>
-            {selectedCar.start_production}{" "}
+            {car.start_production}{" "}
           </div>
           <div className={styles.containerClass}>
             <b>Class:</b>
-            {selectedCar.class}{" "}
+            {car.class}{" "}
           </div>
           <div className={styles.containerId}>
             <b>Id:</b>
-            {selectedCar.id}{" "}
+            {car._id}{" "}
           </div>
         </div>
       </div>
